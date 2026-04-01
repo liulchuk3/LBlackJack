@@ -1,0 +1,993 @@
+/*=============================GLOBAL=============================*/
+html{
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+/*=============================GLOBAL=============================*/
+/*=============================HEADER=============================*/
+header {
+  position: relative;
+  height: 90px;
+  width: 100%;
+  background-color: rgb(11, 9, 13);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px;
+
+  background: linear-gradient(
+    90deg,
+    #ae00df 0%,
+    #fffd92 14%,
+    #d2a6e0 28%,
+    #ae00df 42%,
+    #d2a6e0 56%,
+    #6229ff 70%,
+    #aeff77 84%,
+    #ae00df 100%
+  );
+
+  background-size: 200% 100%;
+  animation: headerBorder 6s linear infinite;
+}
+@keyframes headerBorder {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: -200% 0%;
+  }
+}
+.logo{
+    height: 85px;}
+header a{
+    text-decoration: none;}
+.header-div{
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-div2{
+    width: 70px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-div button{
+    width: 50px;
+    height: 44px;
+    margin-left: 10px;
+    border: none;
+    background-color: rgb(11, 9, 13);
+    color: rgb(255, 255, 255);
+
+    font-size: 32px;
+    cursor: pointer;
+}
+.playerWallet{
+    width: 70px;
+    margin: 0 25px 0 0;
+    padding: 5px 10px;
+    font-size: 18px;
+    color:#6229ff;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+/*=============================HEADER=============================*/
+/*============================SIDEBAR=============================*/
+.sidebar {
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    left: -260px; /* ховаємо */
+    width: 260px;
+    height: 100vh;
+    background: rgb(11, 9, 13);
+    color: white;
+    padding: 20px;
+    transition: left 0.2s ease;
+    z-index: 1000;
+    opacity: 1;
+    overflow: hidden;
+}
+
+.sidebar.active {
+    left: 0; /* виїжджає */
+}
+
+.overlay {
+    z-index: 3;
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 9, 13, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.sidebar h2{
+    text-align: center;
+    margin: 10px;
+}
+select[name="language-select"] {
+    margin-bottom: 40px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(190, 190, 190);
+    color: rgb(11, 9, 13);
+    font-size: 24px;
+    cursor: pointer;
+}
+.button-div{
+    margin-bottom: 20px;
+}
+.statistic-box-mask{
+    height: 350px;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+.statistic-box{
+    overflow: hidden;
+
+    padding: 10px;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column-reverse;
+}
+.statistic-content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+#innerMenuButton {
+    margin-left: -12px;
+    width: 50px;
+    height: 44px;
+    border: none;
+    background-color: rgb(11, 9, 13);
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    cursor: pointer;
+}
+.percent-statistic{
+    margin: 0px auto;
+    width: 90%;
+    height: 35px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+h3{
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+.percent-of-dealer-wins{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(158, 0, 0);
+    border-radius: 10px;
+}
+.percent-of-draws{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34%;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(121, 121, 121);
+    border-radius: 10px;
+}
+.percent-of-player-wins{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 163, 27);
+    border-radius: 10px;
+}
+#statisticsTemplate {
+  display: none;
+}
+.statistic-content-loss {
+    background-color: rgb(158, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.statistic-content-draw {
+    background-color: rgb(121, 121, 121);
+    color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.statistic-content-win {
+    background-color: rgb(0, 163, 27);
+    color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.games-played{
+    
+    color: rgb(255, 255, 255);
+}
+#total-games-text{
+    color: rgb(0, 0, 0);
+    background-color: rgb(221, 221, 221);
+    padding: 2px 5px;
+    margin-top: 1px;
+    border-radius: 5px;
+}
+.games-played-div{
+    gap: 8px;
+    padding-left: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+/*============================SIDEBAR=============================*/
+/*==============================MAIN==============================*/
+main {
+    flex: 1;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#dealerDivCard1 {
+    z-index: 1;
+}
+#front-card{
+    background-color: rgb(199, 199, 199);
+}
+.flip-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+}
+
+.flip-inner.flip {
+    transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+
+.flip-back {
+    transform: rotateY(180deg);
+}
+.dealer-cards{
+    width: 96%;
+    height: 150px;
+    border: #d2a6e0 solid 2px;
+    border-radius: 20px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 0px 3px;
+    transition: all 0.5s ease;
+}
+.dealer-cards-active {
+    
+    animation: blinkBorder 2s linear infinite;
+}
+@keyframes blinkBorder {
+    0% {
+        border-color: #d2a6e0;
+    }
+    25% {
+        border-color: rgb(255, 230, 0);
+    }
+    50% {
+        border-color: #d2a6e0;
+    }
+    75% {
+        border-color: rgb(255, 230, 0);
+    }
+    100% {
+        border-color: #d2a6e0;
+    }
+}
+
+
+.player-cards{
+    width: 96%;
+    height: 150px;
+    border: #d2a6e0 solid 2px;
+    border-radius: 20px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 0px 3px;
+    transition: all 0.5s ease;
+}
+.player-cards-active {
+    
+    animation: blinkBorder 1s linear infinite;
+}
+@keyframes blinkBorder {
+    0% {
+        border-color: #d2a6e0;
+    }
+    25% {
+        border-color: rgb(255, 230, 0);
+    }
+    50% {
+        border-color: #d2a6e0;
+    }
+    75% {
+        border-color: rgb(255, 230, 0);
+    }
+    100% {
+        border-color: #d2a6e0;
+    }
+}
+
+.status-place{
+    
+    margin: 10px auto;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.status-place > p{
+    text-align: center;
+    color: blueviolet;
+    font-size: 20px;
+    animation: statusTextAnimation 0.5s ease;
+}
+@keyframes statusTextAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.dealer-cards div{
+    width: 100%;
+    height: 142px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player-cards div{
+    width: 100%;
+    height: 142px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls{
+    font-size: 32px;
+
+    width: 96%;
+    margin: 0px 0px 5px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.hit-stand-buttons{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+.stand-button:disabled{
+  background-color: rgb(230, 230, 230);
+  color: rgb(221, 221, 221);
+  border: 1px solid rgb(212, 212, 212);
+  cursor: not-allowed;
+}
+.stand-button:disabled:hover{
+  background-color: rgb(230, 230, 230);
+  color: rgb(221, 221, 221);
+  border: 1px solid rgb(212, 212, 212);
+  cursor: not-allowed;
+}
+.hit-button:disabled{
+  background-color: rgb(230, 230, 230);
+  color: rgb(221, 221, 221);
+  border: 1px solid rgb(212, 212, 212);
+  cursor: not-allowed;
+}
+.hit-button:disabled:hover{
+  background-color: rgb(230, 230, 230);
+  color: rgb(221, 221, 221);
+  border: 1px solid rgb(212, 212, 212);
+  cursor: not-allowed;
+}
+.hit-button{
+    width: 100%;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(255, 27, 27);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: black 1px solid;
+}
+.hit-button:hover{
+    background-color: rgb(255, 102, 102);
+    color: #ffffff;
+}
+.stand-button{
+    width: 100%;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(230, 176, 0);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: black 1px solid;
+}
+.stand-button:hover{
+    background-color: rgb(245, 207, 82);
+    color: #ffffff;
+}
+
+.start-button:disabled{
+  background-color: rgb(230, 230, 230);
+  color: rgb(221, 221, 221);
+  border: 1px solid rgb(212, 212, 212);
+  cursor: not-allowed;
+}
+.start-button:disabled:hover{
+  background-color: rgb(230, 230, 230);
+  color: rgb(221, 221, 221);
+  border: 1px solid rgb(212, 212, 212);
+  cursor: not-allowed;
+}
+.start-button{
+    width: 90%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(0, 180, 30);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    border: black 1px solid;
+}
+.start-button:hover{
+    background-color: rgb(0, 180, 30);
+    color: #ffffff;
+}
+.restart-button{
+    width: 90%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(0, 180, 30);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    border: black 1px solid;
+    transition: all 0.5s ease;
+}
+.restart-button:hover{
+    background-color: rgb(0, 180, 30);
+    color: #ffffff;
+}
+.card{
+    background-color: white;
+    font-size: 32px;
+    text-align: center;
+    width: 100%;
+    height: 142px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: black 1px solid;
+    border-radius: 16px;
+
+    animation: appearCardAnimation 0.5s ease;
+}
+
+.card-blured {
+    filter: blur(4px);
+    transition: all 0.2s ease;
+}
+
+@keyframes appearCardAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) translateX(50px) rotate(40deg); /* Початкова точка: вище на 50 пікселів і правіше на 50 пікселів */
+    
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) rotate(0deg);    /* Фінальна точка: своє місце */
+  }
+}
+.dealer-hand-p{
+    align-self: start;
+    font-size: 32px;
+    color: rgb(205, 43, 226);
+    background: linear-gradient(to bottom, rgb(205, 43, 226), #d2a6e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-bottom: -40px;
+}
+.player-hand-p{
+    align-self: start;
+    font-size: 32px;
+    background: linear-gradient(to bottom, #d2a6e0, blueviolet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    margin-top: -38px;
+    margin-left: 5%;
+    margin-bottom: 5px;
+}
+.dealer-info{
+    z-index: 1;
+    font-size: 28px;
+    color: rgb(205, 43, 226);
+    width: 54px;
+    height: 44px;
+    border-radius: 50%;
+    border: #d2a6e0 2px solid;
+    background-color: #ebe3ff;
+    position: relative;
+    top: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player-info{
+    font-size: 28px;
+    color: blueviolet;
+    width: 54px;
+    height: 44px;
+    border-radius: 50%;
+    border: #d2a6e0 2px solid;
+    background-color: #ebe3ff;
+    z-index: 1;
+    position: relative;
+    bottom: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dealer-info p, .player-info p{
+    margin: 0;
+    padding: 0;
+    animation: textAppearAnimation 0.5s ease;
+}
+@keyframes textAppearAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#statusOfWinLoseDraw{
+    display: none;
+}
+.winO{
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+    color: rgb(30, 255, 0);
+    z-index: 2;
+    font-size: 40px;
+    position: absolute;
+    animation: statusOfWinLoseDrawAnimation 0.5s ease;
+}
+#statusOfWinLoseDrawPlaceDealer .winO{
+    top: 215px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#statusOfWinLoseDrawPlacePlayer .winO{
+    top: 415px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.losO{
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+    color: rgb(255, 27, 27);
+    z-index: 2;
+    font-size: 40px;
+    position: absolute;
+    animation: statusOfWinLoseDrawAnimation 0.5s ease;
+}
+#statusOfWinLoseDrawPlaceDealer .losO{
+    top: 215px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#statusOfWinLoseDrawPlacePlayer .losO{
+    top: 415px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.drawO1, .drawO2{
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+    color: rgb(255, 255, 255);
+    z-index: 2;
+    font-size: 40px;
+    position: absolute;
+    animation: statusOfWinLoseDrawAnimation 0.5s ease;
+}
+#statusOfWinLoseDrawPlaceDealer .drawO1, #statusOfWinLoseDrawPlaceDealer .drawO2{
+    top: 215px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#statusOfWinLoseDrawPlacePlayer .drawO1, #statusOfWinLoseDrawPlacePlayer .drawO2{
+    top: 415px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@keyframes statusOfWinLoseDrawAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.bet-box{
+    width: 87%;
+    height: 60px;
+    margin-bottom: 5px;
+    padding: 0px 5px;
+    background-color: white;
+    
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.plus1-active{
+    width: 52px;
+    height: 50px;
+    background-color: rgb(65, 204, 0);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+.plus1-active:disabled{
+    width: 52px;
+    height: 50px;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    color: rgb(221, 221, 221);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: not-allowed;
+}
+.plus2-active{
+    width: 52px;
+    height: 50px;
+    background-color: rgb(180, 230, 0);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+.plus2-active:disabled{
+    width: 52px;
+    height: 50px;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    color: rgb(221, 221, 221);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: not-allowed;
+}
+.plus5-active{
+    width: 52px;
+    height: 50px;
+    background-color: rgb(223, 219, 0);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+.plus5-active:disabled{
+    width: 52px;
+    height: 50px;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    color: rgb(221, 221, 221);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: not-allowed;
+}
+.plus10-active{
+    width: 52px;
+    height: 50px;
+    background-color: rgb(250, 185, 88);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+.plus10-active:disabled{
+    width: 52px;
+    height: 50px;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    color: rgb(221, 221, 221);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: not-allowed;
+}
+.bet-amount-box{
+    width: 100px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    border: rgb(0, 0, 0) 1px solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+    font-size: 24px;
+    color: rgb(11, 9, 13);
+}
+.bet-amount-box-unactive{
+    border: rgb(230, 230, 230) 1px solid;
+    color: rgb(221, 221, 221);
+}
+.bet-amount-box button{
+    width: 60%;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.reset-bet-box:disabled{
+    width: 35%;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bet-amount{
+    width: 65%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.betAmount{
+    text-align: center;
+    font-size: 24px;
+    color: #6229ff;
+    
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+.bet-amount-active{
+    text-shadow: rgb(255, 0, 0) 0px 0px 15px;
+}
+button img{
+    margin: 0;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+}
+button img:hover{
+    transition: all 0.2s ease;
+    transform: rotate(360deg);
+}
+.resetBetButtonImg-unactive{
+    width: 25px;
+    height: 25px;
+    opacity: 0.1;
+}
+
+
+
+
+/*==============================MAIN==============================*/
+/*=============================FOOTER=============================*/
+footer {
+  position: relative;
+  background-color: rgb(11, 9, 13);
+  padding: 10px;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 5px;
+
+  background: linear-gradient(
+    90deg,
+    #ae00df 0%,
+    #aeff77 14%,
+    #6229ff 28%,
+    #ae00df 42%,
+    #d2a6e0 56%,
+    #d2a6e0 70%,
+    #fffd92 84%,
+    #ae00df 100%
+  );
+
+  background-size: 200% 100%;
+  animation: footerBorder 6s linear infinite;
+}
+
+@keyframes footerBorder {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: -200% 0%;
+  }
+}
+footer p{
+  padding: 2px;
+  margin: 0;
+  text-align: center;
+  color: #E7DFC6;
+}
+footer p a{
+  color: #e7dfc6;
+}
+footer p a:hover{
+  color: #e7dfc6;
+  text-decoration: none;
+}
+/*=============================FOOTER=============================*/
+/*==========================CARD STORAGE===========================*/
+
+#cardStorage{
+    display: none;
+}
+
+
+
+
+/*==========================CARD STORAGE===========================*/
+/*=============================ADAPTATION=============================*/
+
+@media (min-width: 768px) {
+    main {
+    width: 400px;
+    margin: 0 auto;
+    flex: 1;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+}
+@media (min-width: 1024px) {
+}

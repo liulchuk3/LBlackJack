@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Короткий опис сторінки для пошукових систем.">
+  <meta name="theme-color" content="rgb(15, 15, 15)">
+
+  <title>GoodPage</title>
+
+  <link rel="icon" href="/Media/Pricing plan icons/icon.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Betania+Patmos&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles/normalize.css">
+  <link rel="stylesheet" href="/styles/casino.css">
+</head>
+
+<body>
+    <header class="animated-border">
+        <div class="header-div">
+            <button id="menuButton">☰</button>
+        </div>
+        <a href="/index.html"><img src="/Media/blackjack/blackjack.png" alt="Logo" class="logo"></a>
+        <div class="header-div2">
+            <p class="playerWallet"><span id="playerWallet">1000</span><span> $</span></p>
+        </div>
+    </header>
+<!--==============================================================-->
+    <sidebar class="sidebar" id="sidebar">
+            <div class="button-div"><button id="innerMenuButton">☰</button></div>
+            <h2 id="language-text">Language</h2>
+            <select name="language-select" id="language-select">
+                <option value="en">🇬🇧 English</option>
+                <option selected value="uk">🇺🇦 Українська</option>
+            </select>
+            <h2 id="statistics-text">Statistics</h2>
+            <div id="percentStatistic" class="percent-statistic">
+                <div class="percent-of-dealer-wins">
+                    <p id="percentOfDealerWins">&nbsp;</p>
+                </div>
+                <div class="percent-of-draws">
+                    <p id="percentOfDraws">&nbsp;</p>
+                </div>
+                <div class="percent-of-player-wins">
+                    <p id="percentOfPlayerWins">&nbsp;</p>
+                </div>
+            </div>
+            <div class="games-played-div">
+                <h3 class="games-played" id="games-played-text">Games played:</h3>
+                <span id="total-games-text">0</span>
+            </div>
+            <h3 id="history-text">History</h3>
+
+            <div class="statistic-box-mask">
+                <div id="statisticsBox" class="statistic-box">
+                    <div id="statisticsTemplate" class="statistic-content">
+                        <p data-i18n="dealer">Dealer </p>
+                        <p class="dealerFinalCount">&nbsp;</p>
+                        <p>:</p>
+                        <p class="playerFinalCount">&nbsp;</p>
+                        <p data-i18n="player"> Player</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- <div id="statisticsBox" class="statistic-box">
+                <div id="statisticsContent" class="statistic-content">
+                    <p>Dealer</p> <p id="dealerFinalCount">&nbsp;</p> <p>:</p> <p id="playerFinalCount">&nbsp;</p> <p>Player</p>
+                </div>
+            </div> -->
+    </sidebar>
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+        
+        <h2 class="dealer-hand-p" id="dealer-hand-p">Dealer hand</h2>
+        <div id="dealerInfoPlace" class="dealer-info">
+                <p id="dealerScore"></p>
+        </div>
+
+        <div id="statusOfWinLoseDrawPlaceDealer"></div>
+
+        <div class="dealer-cards" id="dealer-cards">
+            <div id="dealerDivCard1"></div>
+            <div class="flip-card">
+                <div class="flip-inner" id="flipInnerDealerDivCard2">
+                    <div class="flip-front" id="hiddenDealerDivCard2"></div>
+                    <div class="flip-back" id="dealerDivCard2"></div>
+                </div>
+            </div>
+            <div id="dealerDivCard3"></div>
+            <div id="dealerDivCard4"></div>
+            <div id="dealerDivCard5"></div>
+        </div>
+
+        <div id="statusPlace" class="status-place">
+                <p id="status">&nbsp;</p>
+        </div>
+
+        <div id="statusOfWinLoseDrawPlacePlayer"></div>
+
+        <div class="player-cards" id="player-cards">
+            <div id="playerDivCard1"></div>
+            <div id="playerDivCard2"></div>
+            <div id="playerDivCard3"></div>
+            <div id="playerDivCard4"></div>
+            <div id="playerDivCard5"></div>  
+        </div>
+        <div id="playerInfoPlace" class="player-info">
+                <p id="playerScore"></p>
+            </div>
+        <h2 class="player-hand-p" id="player-hand-p">Your hand</h2>
+        
+        <div class="bet-box">
+            <button class="plus1-active" id="plus1">+1</button>
+            <button class="plus2-active" id="plus2">+2</button>
+            <button class="plus5-active" id="plus5">+5</button>
+            <button class="plus10-active" id="plus10">+10</button>
+            <div class="bet-amount-box" id="bet-amount-box">
+                <div class="bet-amount" id="bet-amount">
+                    <p id="betAmount" class="betAmount">0</p>
+                </div>
+                <div class="reset-bet-box">
+                    <button class="resetBetActive" id="resetBetButton"><img src="/Media/blackjack/free-icon-restart-8373405.png" alt="" id="resetBetButtonImg"></button>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="controls">
+            <div class="hit-stand-buttons">
+                <button disabled id="hit-button" class="hit-button">Hit</button>
+                <button disabled id="stand-button" class="stand-button">Stand</button>
+            </div>
+            <button id="startRestart" class="start-button">Deal</button>
+        </div>
+    </main>
+
+    <div id="statusOfWinLoseDraw">
+        <div id="winO" class="winO"><p>Winner</p></div>
+        <div id="losO" class="losO"><p>Loser</p></div>
+        <div id="drawO1" class="drawO1"><p>Draw</p></div>
+        <div id="drawO2" class="drawO2"><p>Draw</p></div>
+    </div>
+
+    <div id="cardStorage">
+        <div>
+            <div id="front-card" class="card">
+                <p>?</p>
+            </div>
+        </div>
+
+        <div id="hearts2" class="card">
+            <p>2♥</p>
+        </div>
+        <div id="hearts3" class="card">
+            <p>3♥</p>
+        </div>
+        <div id="hearts4" class="card">
+            <p>4♥</p>
+        </div>
+        <div id="hearts5" class="card">
+            <p>5♥</p>
+        </div>
+        <div id="hearts6" class="card">
+            <p>6♥</p>
+        </div>
+        <div id="hearts7" class="card">
+            <p>7♥</p>
+        </div>
+        <div id="hearts8" class="card">
+            <p>8♥</p>
+        </div>
+        <div id="hearts9" class="card">
+            <p>9♥</p>
+        </div>
+        <div id="hearts10" class="card">
+            <p>10♥</p>
+        </div>
+        <div id="heartsJ" class="card">
+            <p>J♥</p>
+        </div>
+        <div id="heartsQ" class="card">
+            <p>Q♥</p>
+        </div>
+        <div id="heartsK" class="card">
+            <p>K♥</p>
+        </div>
+        <div id="heartsA" class="card">
+            <p>A♥</p>
+        </div>
+
+        <div id="clubs2" class="card">
+            <p>2♣</p>
+        </div>
+        <div id="clubs3" class="card">
+            <p>3♣</p>
+        </div>
+        <div id="clubs4" class="card">
+            <p>4♣</p>
+        </div>
+        <div id="clubs5" class="card">
+            <p>5♣</p>
+        </div>
+        <div id="clubs6" class="card">
+            <p>6♣</p>
+        </div>
+        <div id="clubs7" class="card">
+            <p>7♣</p>
+        </div>
+        <div id="clubs8" class="card">
+            <p>8♣</p>
+        </div>
+        <div id="clubs9" class="card">
+            <p>9♣</p>
+        </div>
+        <div id="clubs10" class="card">
+            <p>10♣</p>
+        </div>
+        <div id="clubsJ" class="card">
+            <p>J♣</p>
+        </div>
+        <div id="clubsQ" class="card">
+            <p>Q♣</p>
+        </div>
+        <div id="clubsK" class="card">
+            <p>K♣</p>
+        </div>
+        <div id="clubsA" class="card">
+            <p>A♣</p>
+        </div>
+
+        <div id="diamonds2" class="card">
+            <p>2♦</p>
+        </div>
+        <div id="diamonds3" class="card">
+            <p>3♦</p>
+        </div>
+        <div id="diamonds4" class="card">
+            <p>4♦</p>
+        </div>
+        <div id="diamonds5" class="card">
+            <p>5♦</p>
+        </div>
+        <div id="diamonds6" class="card">
+            <p>6♦</p>
+        </div>
+        <div id="diamonds7" class="card">
+            <p>7♦</p>
+        </div>
+        <div id="diamonds8" class="card">
+            <p>8♦</p>
+        </div>
+        <div id="diamonds9" class="card">
+            <p>9♦</p>
+        </div>
+        <div id="diamonds10" class="card">
+            <p>10♦</p>
+        </div>
+        <div id="diamondsJ" class="card">
+            <p>J♦</p>
+        </div>
+        <div id="diamondsQ" class="card">
+            <p>Q♦</p>
+        </div>
+        <div id="diamondsK" class="card">
+            <p>K♦</p>
+        </div>
+        <div id="diamondsA" class="card">
+            <p>A♦</p>
+        </div>
+
+        <div id="spades2" class="card">
+            <p>2♠</p>
+        </div>
+        <div id="spades3" class="card">
+            <p>3♠</p>
+        </div>
+        <div id="spades4" class="card">
+            <p>4♠</p>
+        </div>
+        <div id="spades5" class="card">
+            <p>5♠</p>
+        </div>
+        <div id="spades6" class="card">
+            <p>6♠</p>
+        </div>
+        <div id="spades7" class="card">
+            <p>7♠</p>
+        </div>
+        <div id="spades8" class="card">
+            <p>8♠</p>
+        </div>
+        <div id="spades9" class="card">
+            <p>9♠</p>
+        </div>
+        <div id="spades10" class="card">
+            <p>10♠</p>
+        </div>
+        <div id="spadesJ" class="card">
+            <p>J♠</p>
+        </div>
+        <div id="spadesQ" class="card">
+            <p>Q♠</p>
+        </div>
+        <div id="spadesK" class="card">
+            <p>K♠</p>
+        </div>
+        <div id="spadesA" class="card">
+            <p>A♠</p>
+        </div>
+    </div>
+
+    <!-- <div id="scorePStorage">
+        <p id="dealerScore"></p>
+        <p id="playerScore"></p>
+    </div> -->
+
+<!--==============================================================-->
+    <footer>
+      <p>© 2026 GoodPage. All rights reserved.</p>
+      <p><a href="">Privacy Policy</a></p>
+      <p><a href="/template.html">Basic page</a></p>
+    </footer>
+  <script src="/js/casino.js"></script>
+</body>
+
+
+
+</html>
